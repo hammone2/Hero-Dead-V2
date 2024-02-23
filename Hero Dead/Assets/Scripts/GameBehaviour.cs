@@ -1,12 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CustomExtensions;
+
 
 using UnityEngine.SceneManagement;
 
 
-public class GameBehaviour : MonoBehaviour
+public class GameBehaviour : MonoBehaviour, IManager
 {
+    private string _state;
+    // 3
+    public string State
+    {
+        get { return _state; }
+        set { _state = value; }
+    }
+
     public bool showWinScreen = false;
 
     public bool showLossScreen = false;
@@ -71,6 +81,17 @@ public class GameBehaviour : MonoBehaviour
         Time.timeScale = 1.0f;
     }
 
+    void Start()
+    {
+        Initialize();
+    }
+    public void Initialize()
+    {
+        _state = "Manager initialized..";
+        _state.FancyDebug();
+        Debug.Log(_state);
+    }
+
     void OnGUI()
     {
         GUI.Box(new Rect(20, 20, 150, 25), "Player Health:" + _playerHP);
@@ -87,7 +108,7 @@ public class GameBehaviour : MonoBehaviour
             // 4
             if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 50, 200, 100), "YOU WON!"))
             {
-               RestartLevel();
+                Utilities.RestartLevel(0);
             }
         }
 
@@ -95,7 +116,7 @@ public class GameBehaviour : MonoBehaviour
         {
             if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 50, 200, 100), "You lose..."))
             {
-                RestartLevel();
+                Utilities.RestartLevel();
             }
         }
 
