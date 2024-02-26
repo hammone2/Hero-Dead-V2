@@ -5,16 +5,29 @@ using UnityEngine;
 public class OpenDoor : MonoBehaviour
 {
     private Animator anim;
+    public string open_anim;
+    public string close_anim;
+
 
     void Start()
     {
         anim = GetComponent<Animator>();
-        //anim.Play("door_3_open");
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnTriggerEnter(Collider other)
     {
-        anim.Play("door_3_open");
+        if (other.name == "Player" || other.name == "Enemy")
+        {
+            anim.Play(open_anim);
+        }
     }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.name == "Player" || other.name == "Enemy")
+        {
+            anim.Play(close_anim);
+        }
+    }
+
 }
