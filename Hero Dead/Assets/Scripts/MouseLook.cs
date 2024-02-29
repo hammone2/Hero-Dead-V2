@@ -8,6 +8,10 @@ public class MouseLook : MonoBehaviour
     public float mouseSens = 100f;
     public Transform playerBody;
 
+    public GameObject bullet;
+    public float bulletSpeed = 100f;
+    public Transform muzzle;
+
     float xRot = 0f;
 
     // Start is called before the first frame update
@@ -27,5 +31,16 @@ public class MouseLook : MonoBehaviour
 
         transform.localRotation = Quaternion.Euler(xRot, 0f, 0f);
         playerBody.Rotate(Vector3.up * mouseX);
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            //GameObject newBullet = Instantiate(bullet, muzzle.transform.position + new Vector3(1, 0, 0), muzzle.transform.rotation) as GameObject;
+            GameObject newBullet = Instantiate(bullet, muzzle.transform.position, transform.rotation) as GameObject;
+
+            Rigidbody bulletRB = newBullet.GetComponent<Rigidbody>();
+
+            bulletRB.velocity = muzzle.transform.forward * bulletSpeed;
+
+        }
     }
 }

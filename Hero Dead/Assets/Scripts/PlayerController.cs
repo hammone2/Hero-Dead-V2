@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.UI;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
@@ -47,7 +49,11 @@ public class PlayerController : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
-        Vector3 move = transform.right * x + transform.forward * z; // normalize this later (player moves faster when moving in both directions)
+
+        Vector3 move = transform.right * x + transform.forward * z; // original code
+
+        //this normalize code sucks fix later
+        //Vector3 move = new Vector3(x, 0, z).normalized;
 
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
@@ -61,15 +67,16 @@ public class PlayerController : MonoBehaviour
 
         controller.Move(velocity * Time.deltaTime);
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            GameObject newBullet = Instantiate(bullet, this.transform.position + new Vector3(1, 0, 0), this.transform.rotation) as GameObject;
+        
+        //if (Input.GetMouseButtonDown(0))
+        //{
+            //GameObject newBullet = Instantiate(bullet, this.transform.position + new Vector3(1, 0, 0), this.transform.rotation) as GameObject;
 
-            Rigidbody bulletRB = newBullet.GetComponent<Rigidbody>();
+            //Rigidbody bulletRB = newBullet.GetComponent<Rigidbody>();
 
-            bulletRB.velocity = this.transform.forward * bulletSpeed;
+            //bulletRB.velocity = this.transform.forward * bulletSpeed;
             
-        }
+        //}
 
 
     }
