@@ -24,6 +24,9 @@ public class PlayerController : MonoBehaviour
     public GameObject bullet;
     public float bulletSpeed = 100f;
 
+    public delegate void JumpingEvent();
+    public event JumpingEvent playerJump;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,6 +52,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            playerJump();
         }
 
         controller.Move(move * speed * Time.deltaTime);
