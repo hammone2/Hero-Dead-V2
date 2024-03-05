@@ -16,7 +16,7 @@ public class OpenDoor : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.name == "Player" || other.name == "Enemy")
+        if (other.name == "Player")
         {
             anim.Play(open_anim);
         }
