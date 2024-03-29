@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-//using UnityEditor.UI;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -66,17 +65,6 @@ public class PlayerController : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
-
-        
-        //if (Input.GetMouseButtonDown(0))
-        //{
-            //GameObject newBullet = Instantiate(bullet, this.transform.position + new Vector3(1, 0, 0), this.transform.rotation) as GameObject;
-
-            //Rigidbody bulletRB = newBullet.GetComponent<Rigidbody>();
-
-            //bulletRB.velocity = this.transform.forward * bulletSpeed;
-            
-        //}
 
 
     }
