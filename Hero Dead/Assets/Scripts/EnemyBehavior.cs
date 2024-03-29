@@ -73,10 +73,6 @@ public class EnemyBehavior : MonoBehaviour
             agent.destination = locations[locationIndex].position;
             locationIndex = (locationIndex + 1) % locations.Count;
         }
-        //else
-        //{
-            //agent.destination = player.position;
-        //}
         
     }
 
