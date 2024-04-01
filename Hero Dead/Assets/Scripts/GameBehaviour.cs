@@ -5,6 +5,7 @@ using CustomExtensions;
 
 
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 
 public class GameBehaviour : MonoBehaviour, IManager
@@ -16,6 +17,10 @@ public class GameBehaviour : MonoBehaviour, IManager
         get { return _state; }
         set { _state = value; }
     }
+
+    public Text ammoText;
+    public Text healthText;
+    public Text itemText;
 
     public bool showWinScreen = false;
 
@@ -72,7 +77,7 @@ public class GameBehaviour : MonoBehaviour, IManager
             {
                 labelText = "You died!";
                 showLossScreen = true;
-                Time.timeScale = 0;
+                //Time.timeScale = 0;
             }
             else
             {
@@ -135,22 +140,13 @@ public class GameBehaviour : MonoBehaviour, IManager
 
     void OnGUI()
     {
-        GUI.Box(new Rect(20, 20, 150, 25), "Player Health:" + _playerHP);
-        // 5
-        GUI.Box(new Rect(20, 50, 150, 25), "Items Collected: " + _itemsCollected);
-
-        GUI.Box(new Rect(20, 80, 150, 25), "Gun Ammo: " + gunAmmo);
-        // 6
-        GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height - 50, 300, 50), labelText);
+        ammoText.text = gunAmmo.ToString();
+        healthText.text = _playerHP.ToString();
+        itemText.text = _itemsCollected.ToString();
 
 
         if (showWinScreen)
         {
-            // 4
-            //if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 50, 200, 100), "YOU WON!"))
-            //{
-            //Utilities.RestartLevel(0);
-            //}
             SceneManager.LoadScene(2);
         }
 
