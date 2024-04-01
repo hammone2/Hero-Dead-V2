@@ -2548,6 +2548,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2154111305748976332, guid: 715b23324257d574d8b7f0eaf2c62935, type: 3}
+      propertyPath: labelText
+      value: 'OBJECTIVE: Find the keycard and escape!'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2154111305748976332, guid: 715b23324257d574d8b7f0eaf2c62935, type: 3}
+      propertyPath: showWinScreen
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3353392653539986362, guid: 715b23324257d574d8b7f0eaf2c62935, type: 3}
       propertyPath: m_Name
       value: Game Manager

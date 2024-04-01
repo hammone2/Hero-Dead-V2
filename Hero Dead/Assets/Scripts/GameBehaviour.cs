@@ -21,7 +21,7 @@ public class GameBehaviour : MonoBehaviour, IManager
 
     public bool showLossScreen = false;
 
-    public string labelText = "Collect all 4 items and win your freedom!";
+    public string labelText = "OBJECTIVE: Find the keycard and escape!";
     public int maxItems = 4;
     public int maxHealth = 100;
     public int gunAmmo = 0;
@@ -50,7 +50,7 @@ public class GameBehaviour : MonoBehaviour, IManager
             {
                 labelText = "You've found all the items!";
                 showWinScreen = true;
-                Time.timeScale = 0f;
+                //Time.timeScale = 0f;
             }
             else
             {
@@ -147,10 +147,11 @@ public class GameBehaviour : MonoBehaviour, IManager
         if (showWinScreen)
         {
             // 4
-            if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 50, 200, 100), "YOU WON!"))
-            {
-                Utilities.RestartLevel(0);
-            }
+            //if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 50, 200, 100), "YOU WON!"))
+            //{
+            //Utilities.RestartLevel(0);
+            //}
+            SceneManager.LoadScene(2);
         }
 
         if (showLossScreen)
