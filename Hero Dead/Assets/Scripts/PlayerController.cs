@@ -71,9 +71,11 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.name == "Enemy")
+        Debug.Log("Colliding");
+        if (collision.gameObject.tag == "Enemy")
         {
             _gameManager.HP -= 1;
+            Debug.Log("Colliding with Enemy");
         }
     }
 }
