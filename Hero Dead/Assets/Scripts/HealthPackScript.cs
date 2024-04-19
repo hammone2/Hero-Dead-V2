@@ -15,8 +15,8 @@ public class HealthPackScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("collision");
-        if (other.gameObject.name == "PlayerCol")
+        //Debug.Log("collision");
+        if (other.gameObject.name == "Player")
         {
             Destroy(this.transform.parent.gameObject);
             Debug.Log("Item Collected");

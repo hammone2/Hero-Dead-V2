@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public float speed = 12f;
     public float gravity = -19.62f;
     public float jumpHeight = 3f;
+    public float damageCooldown = 15f;
 
     Vector3 velocity;
     bool isGrounded;
@@ -32,6 +33,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         _gameManager = GameObject.Find("Game Manager").GetComponent<GameBehaviour>();
+        Debug.Log("PlayerController Start");
     }
 
     // Update is called once per frame
@@ -49,10 +51,12 @@ public class PlayerController : MonoBehaviour
         float z = Input.GetAxis("Vertical");
 
 
-        Vector3 move = transform.right * x + transform.forward * z; // original code
+        //Vector3 inputDirection = new Vector3(x, 0, z).normalized; // Normalize the input direction
 
-        //this normalize code sucks fix later
-        //Vector3 move = new Vector3(x, 0, z).normalized;
+        //Vector3 move = transform.right * inputDirection.x + transform.forward * inputDirection.z; // Use normalized input direction
+
+
+        Vector3 move = transform.right * x + transform.forward * z; // original code
 
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
@@ -66,16 +70,42 @@ public class PlayerController : MonoBehaviour
 
         controller.Move(velocity * Time.deltaTime);
 
+        if (damageCooldown > 0)
+        {
+            damageCooldown -= 1;
+        }
+        
 
     }
 
-    void OnCollisionEnter(Collision collision)
+    //void OnCollisionEnter(Collision collision)
+    //{
+    //    Debug.Log("Colliding");
+    //    if (collision.gameObject.tag == "Enemy")
+    //    {
+    //        _gameManager.HP -= 1;
+    //        Debug.Log("Colliding with Enemy");
+    //    }
+    //}
+
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    //Debug.Log(other.gameObject.tag);    
+    //}
+
+    // Detect collisions with ceiling
+    void OnControllerColliderHit(ControllerColliderHit hit) 
     {
         Debug.Log("Colliding");
-        if (collision.gameObject.tag == "Enemy")
+        if (hit.gameObject.tag == ("Enemy")) 
         {
-            _gameManager.HP -= 1;
-            Debug.Log("Colliding with Enemy");
+            if (damageCooldown <= 0)
+            {
+                _gameManager.HP -= 1;
+                Debug.Log("Colliding with Enemy");
+                damageCooldown = 12f;
+            }
+            
         }
     }
 }
