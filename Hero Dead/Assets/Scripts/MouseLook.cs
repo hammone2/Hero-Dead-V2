@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MouseLook : MonoBehaviour
 {
+    [SerializeField] public AudioSource audioSource;
 
     public float mouseSens = 100f;
     public Transform playerBody;
@@ -40,6 +41,8 @@ public class MouseLook : MonoBehaviour
             Rigidbody bulletRB = newBullet.GetComponent<Rigidbody>();
 
             bulletRB.velocity = muzzle.transform.forward * bulletSpeed;
+
+            audioSource.Play();
 
         }
     }
